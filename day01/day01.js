@@ -6,17 +6,18 @@ if (readError) {
   return;
 }
 
-const inputArr = input.split("\n");
+const inputArr = input.trim().split("\n");
 let numIncreased = 0;
 let prevValue = null;
 for (let value of inputArr) {
-  if (prevValue !== null && prevValue < value) {
+  if (prevValue !== null && Number(value) > prevValue) {
     numIncreased++;
   }
-  prevValue = value;
+  prevValue = Number(value);
 }
 
 const output = numIncreased.toString();
+console.log(output);
 const writeError = setFile(output, __dirname + "/output.txt");
 if (writeError) {
   console.error(writeError);
